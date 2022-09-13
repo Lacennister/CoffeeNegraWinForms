@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CoffeeNegraWinForms.Forms
 {
-    public partial class ScheduleForm : Form
+    public partial class PayrollForm : Form
     {
-        public ScheduleForm()
+        public PayrollForm()
         {
             InitializeComponent();
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);

@@ -46,7 +46,7 @@ namespace CoffeeNegraWinForms.Forms
             // 
             // btnNo
             // 
-            this.btnNo.BackColor = System.Drawing.Color.Transparent;
+            this.btnNo.BackColor = System.Drawing.Color.Linen;
             this.btnNo.BorderRadius = 5;
             this.btnNo.BorderThickness = 1;
             this.btnNo.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -54,7 +54,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnNo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnNo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnNo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnNo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNo.ForeColor = System.Drawing.Color.Black;
             this.btnNo.Location = new System.Drawing.Point(270, 118);
             this.btnNo.Name = "btnNo";
@@ -65,7 +65,7 @@ namespace CoffeeNegraWinForms.Forms
             // 
             // btnYes
             // 
-            this.btnYes.BackColor = System.Drawing.Color.Transparent;
+            this.btnYes.BackColor = System.Drawing.Color.Linen;
             this.btnYes.BorderRadius = 5;
             this.btnYes.BorderThickness = 1;
             this.btnYes.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -73,7 +73,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnYes.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnYes.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnYes.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnYes.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnYes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYes.ForeColor = System.Drawing.Color.Black;
             this.btnYes.Location = new System.Drawing.Point(60, 118);
             this.btnYes.Name = "btnYes";
@@ -86,6 +86,7 @@ namespace CoffeeNegraWinForms.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.NavajoWhite;
             this.ClientSize = new System.Drawing.Size(419, 165);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.btnYes);

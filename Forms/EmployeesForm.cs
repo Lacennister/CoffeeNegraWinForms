@@ -16,10 +16,10 @@ namespace CoffeeNegraWinForms.Forms
 {
     public partial class EmployeesForm : Form
     {
+        public int location_id { get; set; }
+
         List<Employee> _employees = new List<Employee>();
         employees db = new employees();
-
-        private bool isEditing = false;
 
         public EmployeesForm()
         {
@@ -48,10 +48,14 @@ namespace CoffeeNegraWinForms.Forms
 
         private void EmployeesForm_Load(object sender, EventArgs e)
         {
-            _employees = db.GetEmployees();
+            UpdateDatagridView();
+        }
+
+        private void UpdateDatagridView()
+        {
+            _employees = db.GetEmployees(location_id);
 
             dgvEmployees.Rows.Clear();
-
             foreach (Employee _employee in _employees)
             {
                 dgvEmployees.Rows.Add(_employee.id, _employee.name, _employee.birthday, _employee.age, _employee.address, _employee.contact, _employee.timeAvailability.ToString());
@@ -67,28 +71,14 @@ namespace CoffeeNegraWinForms.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvEmployees.Rows.Count <= 0) return;
 
-            isEditing = true;
-
-            foreach (DataGridViewRow row in dgvEmployees.SelectedRows)
-            {
-                //using (EmployeesManagerForm _employeesManagerForm = new EmployeesManagerForm() { EmployeeInfo = new Employee() })
-                //{
-                //    if (_employeesManagerForm.ShowDialog() == DialogResult.OK)
-                //    {
-                //        Employee _employee = _employeesManagerForm.EmployeeInfo;
-                //        dgvEmployees.Rows.Add(_employee.id, _employee.name, _employee.birthday, _employee.age, _employee.address, _employee.contact, _employee.timeAvailability.ToString());
-                //    }
-                //}
-
-                break;
-            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvEmployees.Rows.Count <= 0) return;
+
+            bool SuccessArchived = false;
             
             for (int i = dgvEmployees.Rows.Count - 1; dgvEmployees.Rows.Count > i; i--)
             {
@@ -101,69 +91,126 @@ namespace CoffeeNegraWinForms.Forms
 
                     if (ask.ShowDialog() == DialogResult.Yes)
                     {
-                        dgvEmployees.Rows.Remove(row);
+                        int employee_id = (Int32)row.Cells[0].Value;
+                        db.ArchiveEmployee(employee_id);
+
+                        SuccessArchived = true;
                     }
 
                     break;
                 }
+            }
+
+            if (SuccessArchived)
+            {
+                UpdateDatagridView();
             }
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (isEditing == false)
+            bool isSaved = false;
+
+            foreach (DataGridViewRow row in dgvEmployees.Rows)
             {
-                foreach (DataGridViewRow row in dgvEmployees.Rows)
+                Employee _employee = GetEmployeeFromDatagridview(row);
+
+                if (EmployeeWasUpdated(_employee) || IsEmployeeExist(_employee) == false)
                 {
-                    // IF ID IS NULL, MEANS THIS IS NEWLY ADDED, ASK IF WANT TO SAVE
-                    if (row.Cells[0].Value == null || (int)row.Cells[0].Value == 0)
+                    CustomDialogBox ask = new CustomDialogBox()
                     {
-                        CustomDialogBox ask = new CustomDialogBox()
-                        {
-                            message_alert = "Do you want to save this employee? " + row.Cells[1].Value
-                        };
+                        message_alert = "Do you want to save this employee? \n" + row.Cells[1].Value
+                    };
 
-                        if (ask.ShowDialog() == DialogResult.Yes)
-                        {
-                            // SAVE TO DATABASE
-                            Employee _employee = new Employee();
-                            _employee.name = row.Cells[1].Value.ToString();
-                            _employee.birthday = row.Cells[2].Value.ToString();
-                            _employee.age = Convert.ToInt32(row.Cells[3].Value);
-                            _employee.address = row.Cells[4].Value.ToString();
-                            _employee.contact = row.Cells[5].Value.ToString();
-
-                            TimeAvailability _timeAvailability = new TimeAvailability();
-                            _timeAvailability.ParseFromString(row.Cells[6].Value.ToString());
-                            _employee.timeAvailability = _timeAvailability;
-
-                            db.InsertEmployee(_employee);
-
-                            MessageBox.Show("Done Saving!");
-                        }
+                    if (ask.ShowDialog() == DialogResult.Yes)
+                    {
+                        db.InsertEmployee(_employee, location_id);
+                        isSaved = true;
                     }
                 }
             }
-            else
+
+            if (isSaved) 
             {
-                foreach (DataGridViewRow row in dgvEmployees.SelectedRows)
+                UpdateDatagridView();
+                MessageBox.Show("Done Saving!");
+            }
+        }
+
+        private bool IsEmployeeExist(Employee _employee)
+        {
+            foreach (Employee employee in _employees)
+            {
+                if (employee.id == _employee.id)
                 {
-                    foreach (Employee _employee in _employees)
-                    {
-                        int _dgvEmployeeID = (Int32)row.Cells[0].Value;
-
-                        if (_dgvEmployeeID == _employee.id)
-                        {
-
-                        }
-                    }
-
-                    isEditing = false;
-                    break;
+                    return true;
                 }
+            }
+            return false;
+        }
+
+        private bool EmployeeWasUpdated(Employee _employee)
+        {
+            foreach (Employee employee in _employees)
+            {
+                if (employee.id == _employee.id)
+                {
+                    if (employee.name != _employee.name) return true;
+                    if (employee.age != _employee.age) return true;
+                    if (employee.birthday != _employee.birthday) return true;
+                    if (employee.contact != _employee.contact) return true;
+                    if (employee.address != _employee.address) return true;
+                    if (employee.timeAvailability.ToString() != _employee.timeAvailability.ToString()) return true;
+                }
+            }
+            return false;
+        }
+
+        private Employee GetEmployeeFromDatagridview(DataGridViewRow row)
+        {
+            try
+            {
+                // SAVE TO DATABASE
+                Employee _employee = new Employee();
+                _employee.id = Convert.ToInt32(row.Cells[0].Value);
+                _employee.name = (string)row.Cells[1].Value;
+                _employee.birthday = (string)row.Cells[2].Value;
+                _employee.age = Convert.ToInt32(row.Cells[3].Value);
+                _employee.address = (string)row.Cells[4].Value;
+                _employee.contact = (string)row.Cells[5].Value;
+
+                if (_employee.name == "")
+                {
+                    MessageBox.Show("Employee name cannot be blank");
+                    throw new Exception("Error");
+                }
+
+                TimeAvailability _timeAvailability = new TimeAvailability();
+                string avail = "";
+
+                if (row.Cells[6].Value != null)
+                {
+                    avail = (string)row.Cells[6].Value;
+
+                    bool isValid = _timeAvailability.ParseFromString(avail);
+                    if (isValid == false)
+                    {
+                        MessageBox.Show("Time availability you provided was unable to parse. Please use correct format like Monday, Tuesday, Wednesday etc.");
+                        throw new Exception("Error");
+                    }
+                }
+                _employee.timeAvailability = _timeAvailability;
+
+                return _employee;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
             
         }
+
         private void btnAddViaForm_Click(object sender, EventArgs e)
         {
             using (EmployeesManagerForm _employeesManagerForm = new EmployeesManagerForm() { EmployeeInfo = new Employee() })

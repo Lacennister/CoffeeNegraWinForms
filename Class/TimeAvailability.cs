@@ -28,7 +28,7 @@ namespace CoffeeNegraWinForms.Class
             if (Saturday) { availability.Add("Saturday"); }
             if (Sunday) { availability.Add("Sunday"); }
 
-            string _result = "Time Availability not set";
+            string _result = "N/A";
             if (availability.Count > 0)
             {
                 _result = string.Join(",", availability);
@@ -37,8 +37,10 @@ namespace CoffeeNegraWinForms.Class
             return _result;
         }
 
-        public void ParseFromString(string _availability)
+        public bool ParseFromString(string _availability)
         {
+            if (_availability == "N/A") return true;
+
             if (_availability.Contains(","))
             {
                 string[] days = _availability.Split(',');
@@ -52,7 +54,30 @@ namespace CoffeeNegraWinForms.Class
                     if (day.ToUpper() == "SATURDAY") { Saturday = true; }
                     if (day.ToUpper() == "SUNDAY") { Sunday = true; }
                 }
+
+                if (Monday==false &&
+                    Tuesday == false &&
+                    Wednesday == false &&
+                    Thursday == false &&
+                    Friday == false &&
+                    Saturday == false && Sunday == false)
+                {
+                    return false;
+                }
             }
+            else
+            {
+                if (_availability.ToUpper() == "MONDAY") { Monday = true; return true; }
+                if (_availability.ToUpper() == "TUESDAY") { Tuesday = true; return true; }
+                if (_availability.ToUpper() == "WEDNESDAY") { Wednesday = true; return true; }
+                if (_availability.ToUpper() == "THURSDAY") { Thursday = true; return true; }
+                if (_availability.ToUpper() == "FRIDAY") { Friday = true; return true; }
+                if (_availability.ToUpper() == "SATURDAY") { Saturday = true; return true; }
+                if (_availability.ToUpper() == "SUNDAY") { Sunday = true; return true; }
+            }
+
+            return false;
+
         }
     }
 }

@@ -20,9 +20,12 @@ namespace CoffeeNegraWinForms.Database
 
                 users users_tbl = new users();
                 users_tbl.CreateUsersTable(connection);
+                users_tbl.InsertUser("admin", "admin");
 
                 locations locations_tbl = new locations();
                 locations_tbl.CreateLocationsTable(connection);
+                locations_tbl.InsertLocation("Sta. Maria");
+                locations_tbl.InsertLocation("Pulilan");
 
                 employees employees_tbl = new employees();
                 employees_tbl.CreateEmployeesTable(connection);
