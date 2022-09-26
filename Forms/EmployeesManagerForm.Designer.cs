@@ -32,13 +32,13 @@ namespace CoffeeNegraWinForms.Forms
             this.btnDone = new Guna.UI2.WinForms.Guna2Button();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbSunday = new System.Windows.Forms.CheckBox();
-            this.cbSaturday = new System.Windows.Forms.CheckBox();
-            this.cbFriday = new System.Windows.Forms.CheckBox();
-            this.cbThursday = new System.Windows.Forms.CheckBox();
-            this.cbWednesday = new System.Windows.Forms.CheckBox();
-            this.cbTuesday = new System.Windows.Forms.CheckBox();
-            this.cbMonday = new System.Windows.Forms.CheckBox();
+            this.cbSundayMorning = new System.Windows.Forms.CheckBox();
+            this.cbSaturdayMorning = new System.Windows.Forms.CheckBox();
+            this.cbFridayMorning = new System.Windows.Forms.CheckBox();
+            this.cbThursdayMorning = new System.Windows.Forms.CheckBox();
+            this.cbWednesdayMorning = new System.Windows.Forms.CheckBox();
+            this.cbTuesdayMorning = new System.Windows.Forms.CheckBox();
+            this.cbMondayMorning = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtContact = new Guna.UI2.WinForms.Guna2TextBox();
@@ -50,9 +50,18 @@ namespace CoffeeNegraWinForms.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.txtFullname = new Guna.UI2.WinForms.Guna2TextBox();
             this.numAge = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbSundayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbSaturdayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbFridayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbThursdayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbWednesdayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbTuesdayAfternoon = new System.Windows.Forms.CheckBox();
+            this.cbMondayAfternoon = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAge)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDone
@@ -67,7 +76,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnDone.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnDone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDone.ForeColor = System.Drawing.Color.Black;
-            this.btnDone.Location = new System.Drawing.Point(380, 360);
+            this.btnDone.Location = new System.Drawing.Point(554, 342);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(90, 35);
             this.btnDone.TabIndex = 13;
@@ -86,7 +95,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnClose.FillColor = System.Drawing.Color.Transparent;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(25, 360);
+            this.btnClose.Location = new System.Drawing.Point(13, 342);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(90, 35);
             this.btnClose.TabIndex = 2;
@@ -95,89 +104,97 @@ namespace CoffeeNegraWinForms.Forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbSunday);
-            this.groupBox1.Controls.Add(this.cbSaturday);
-            this.groupBox1.Controls.Add(this.cbFriday);
-            this.groupBox1.Controls.Add(this.cbThursday);
-            this.groupBox1.Controls.Add(this.cbWednesday);
-            this.groupBox1.Controls.Add(this.cbTuesday);
-            this.groupBox1.Controls.Add(this.cbMonday);
-            this.groupBox1.Location = new System.Drawing.Point(314, 28);
+            this.groupBox1.Controls.Add(this.cbSundayMorning);
+            this.groupBox1.Controls.Add(this.cbSaturdayMorning);
+            this.groupBox1.Controls.Add(this.cbFridayMorning);
+            this.groupBox1.Controls.Add(this.cbThursdayMorning);
+            this.groupBox1.Controls.Add(this.cbWednesdayMorning);
+            this.groupBox1.Controls.Add(this.cbTuesdayMorning);
+            this.groupBox1.Controls.Add(this.cbMondayMorning);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(302, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(156, 313);
+            this.groupBox1.Size = new System.Drawing.Size(168, 313);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Time Availability";
+            this.groupBox1.Text = "Morning Shift";
             // 
-            // cbSunday
+            // cbSundayMorning
             // 
-            this.cbSunday.AutoSize = true;
-            this.cbSunday.Location = new System.Drawing.Point(17, 261);
-            this.cbSunday.Name = "cbSunday";
-            this.cbSunday.Size = new System.Drawing.Size(78, 21);
-            this.cbSunday.TabIndex = 12;
-            this.cbSunday.Text = "Sunday";
-            this.cbSunday.UseVisualStyleBackColor = true;
+            this.cbSundayMorning.AutoSize = true;
+            this.cbSundayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSundayMorning.Location = new System.Drawing.Point(17, 261);
+            this.cbSundayMorning.Name = "cbSundayMorning";
+            this.cbSundayMorning.Size = new System.Drawing.Size(76, 23);
+            this.cbSundayMorning.TabIndex = 12;
+            this.cbSundayMorning.Text = "Sunday";
+            this.cbSundayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbSaturday
+            // cbSaturdayMorning
             // 
-            this.cbSaturday.AutoSize = true;
-            this.cbSaturday.Location = new System.Drawing.Point(17, 223);
-            this.cbSaturday.Name = "cbSaturday";
-            this.cbSaturday.Size = new System.Drawing.Size(87, 21);
-            this.cbSaturday.TabIndex = 11;
-            this.cbSaturday.Text = "Saturday";
-            this.cbSaturday.UseVisualStyleBackColor = true;
+            this.cbSaturdayMorning.AutoSize = true;
+            this.cbSaturdayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSaturdayMorning.Location = new System.Drawing.Point(17, 223);
+            this.cbSaturdayMorning.Name = "cbSaturdayMorning";
+            this.cbSaturdayMorning.Size = new System.Drawing.Size(85, 23);
+            this.cbSaturdayMorning.TabIndex = 11;
+            this.cbSaturdayMorning.Text = "Saturday";
+            this.cbSaturdayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbFriday
+            // cbFridayMorning
             // 
-            this.cbFriday.AutoSize = true;
-            this.cbFriday.Location = new System.Drawing.Point(17, 187);
-            this.cbFriday.Name = "cbFriday";
-            this.cbFriday.Size = new System.Drawing.Size(69, 21);
-            this.cbFriday.TabIndex = 10;
-            this.cbFriday.Text = "Friday";
-            this.cbFriday.UseVisualStyleBackColor = true;
+            this.cbFridayMorning.AutoSize = true;
+            this.cbFridayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFridayMorning.Location = new System.Drawing.Point(17, 187);
+            this.cbFridayMorning.Name = "cbFridayMorning";
+            this.cbFridayMorning.Size = new System.Drawing.Size(68, 23);
+            this.cbFridayMorning.TabIndex = 10;
+            this.cbFridayMorning.Text = "Friday";
+            this.cbFridayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbThursday
+            // cbThursdayMorning
             // 
-            this.cbThursday.AutoSize = true;
-            this.cbThursday.Location = new System.Drawing.Point(17, 150);
-            this.cbThursday.Name = "cbThursday";
-            this.cbThursday.Size = new System.Drawing.Size(90, 21);
-            this.cbThursday.TabIndex = 9;
-            this.cbThursday.Text = "Thursday";
-            this.cbThursday.UseVisualStyleBackColor = true;
+            this.cbThursdayMorning.AutoSize = true;
+            this.cbThursdayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbThursdayMorning.Location = new System.Drawing.Point(17, 150);
+            this.cbThursdayMorning.Name = "cbThursdayMorning";
+            this.cbThursdayMorning.Size = new System.Drawing.Size(87, 23);
+            this.cbThursdayMorning.TabIndex = 9;
+            this.cbThursdayMorning.Text = "Thursday";
+            this.cbThursdayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbWednesday
+            // cbWednesdayMorning
             // 
-            this.cbWednesday.AutoSize = true;
-            this.cbWednesday.Location = new System.Drawing.Point(17, 114);
-            this.cbWednesday.Name = "cbWednesday";
-            this.cbWednesday.Size = new System.Drawing.Size(105, 21);
-            this.cbWednesday.TabIndex = 8;
-            this.cbWednesday.Text = "Wednesday";
-            this.cbWednesday.UseVisualStyleBackColor = true;
+            this.cbWednesdayMorning.AutoSize = true;
+            this.cbWednesdayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWednesdayMorning.Location = new System.Drawing.Point(17, 114);
+            this.cbWednesdayMorning.Name = "cbWednesdayMorning";
+            this.cbWednesdayMorning.Size = new System.Drawing.Size(101, 23);
+            this.cbWednesdayMorning.TabIndex = 8;
+            this.cbWednesdayMorning.Text = "Wednesday";
+            this.cbWednesdayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbTuesday
+            // cbTuesdayMorning
             // 
-            this.cbTuesday.AutoSize = true;
-            this.cbTuesday.Location = new System.Drawing.Point(17, 78);
-            this.cbTuesday.Name = "cbTuesday";
-            this.cbTuesday.Size = new System.Drawing.Size(85, 21);
-            this.cbTuesday.TabIndex = 7;
-            this.cbTuesday.Text = "Tuesday";
-            this.cbTuesday.UseVisualStyleBackColor = true;
+            this.cbTuesdayMorning.AutoSize = true;
+            this.cbTuesdayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTuesdayMorning.Location = new System.Drawing.Point(17, 78);
+            this.cbTuesdayMorning.Name = "cbTuesdayMorning";
+            this.cbTuesdayMorning.Size = new System.Drawing.Size(81, 23);
+            this.cbTuesdayMorning.TabIndex = 7;
+            this.cbTuesdayMorning.Text = "Tuesday";
+            this.cbTuesdayMorning.UseVisualStyleBackColor = true;
             // 
-            // cbMonday
+            // cbMondayMorning
             // 
-            this.cbMonday.AutoSize = true;
-            this.cbMonday.Location = new System.Drawing.Point(17, 43);
-            this.cbMonday.Name = "cbMonday";
-            this.cbMonday.Size = new System.Drawing.Size(80, 21);
-            this.cbMonday.TabIndex = 6;
-            this.cbMonday.Text = "Monday";
-            this.cbMonday.UseVisualStyleBackColor = true;
+            this.cbMondayMorning.AutoSize = true;
+            this.cbMondayMorning.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMondayMorning.Location = new System.Drawing.Point(17, 43);
+            this.cbMondayMorning.Name = "cbMondayMorning";
+            this.cbMondayMorning.Size = new System.Drawing.Size(82, 23);
+            this.cbMondayMorning.TabIndex = 6;
+            this.cbMondayMorning.Text = "Monday";
+            this.cbMondayMorning.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -191,7 +208,7 @@ namespace CoffeeNegraWinForms.Forms
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtFullname);
             this.groupBox2.Controls.Add(this.numAge);
-            this.groupBox2.Location = new System.Drawing.Point(25, 28);
+            this.groupBox2.Location = new System.Drawing.Point(13, 23);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(283, 313);
             this.groupBox2.TabIndex = 18;
@@ -321,16 +338,121 @@ namespace CoffeeNegraWinForms.Forms
             this.numAge.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numAge.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.numAge.Location = new System.Drawing.Point(180, 125);
+            this.numAge.Minimum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
             this.numAge.Name = "numAge";
             this.numAge.Size = new System.Drawing.Size(90, 36);
             this.numAge.TabIndex = 3;
             this.numAge.UpDownButtonFillColor = System.Drawing.Color.White;
+            this.numAge.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.cbSundayAfternoon);
+            this.groupBox4.Controls.Add(this.cbSaturdayAfternoon);
+            this.groupBox4.Controls.Add(this.cbFridayAfternoon);
+            this.groupBox4.Controls.Add(this.cbThursdayAfternoon);
+            this.groupBox4.Controls.Add(this.cbWednesdayAfternoon);
+            this.groupBox4.Controls.Add(this.cbTuesdayAfternoon);
+            this.groupBox4.Controls.Add(this.cbMondayAfternoon);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(476, 23);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(168, 313);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Afternoon Shift";
+            // 
+            // cbSundayAfternoon
+            // 
+            this.cbSundayAfternoon.AutoSize = true;
+            this.cbSundayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSundayAfternoon.Location = new System.Drawing.Point(17, 261);
+            this.cbSundayAfternoon.Name = "cbSundayAfternoon";
+            this.cbSundayAfternoon.Size = new System.Drawing.Size(76, 23);
+            this.cbSundayAfternoon.TabIndex = 12;
+            this.cbSundayAfternoon.Text = "Sunday";
+            this.cbSundayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbSaturdayAfternoon
+            // 
+            this.cbSaturdayAfternoon.AutoSize = true;
+            this.cbSaturdayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSaturdayAfternoon.Location = new System.Drawing.Point(17, 223);
+            this.cbSaturdayAfternoon.Name = "cbSaturdayAfternoon";
+            this.cbSaturdayAfternoon.Size = new System.Drawing.Size(85, 23);
+            this.cbSaturdayAfternoon.TabIndex = 11;
+            this.cbSaturdayAfternoon.Text = "Saturday";
+            this.cbSaturdayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbFridayAfternoon
+            // 
+            this.cbFridayAfternoon.AutoSize = true;
+            this.cbFridayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFridayAfternoon.Location = new System.Drawing.Point(17, 187);
+            this.cbFridayAfternoon.Name = "cbFridayAfternoon";
+            this.cbFridayAfternoon.Size = new System.Drawing.Size(68, 23);
+            this.cbFridayAfternoon.TabIndex = 10;
+            this.cbFridayAfternoon.Text = "Friday";
+            this.cbFridayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbThursdayAfternoon
+            // 
+            this.cbThursdayAfternoon.AutoSize = true;
+            this.cbThursdayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbThursdayAfternoon.Location = new System.Drawing.Point(17, 150);
+            this.cbThursdayAfternoon.Name = "cbThursdayAfternoon";
+            this.cbThursdayAfternoon.Size = new System.Drawing.Size(87, 23);
+            this.cbThursdayAfternoon.TabIndex = 9;
+            this.cbThursdayAfternoon.Text = "Thursday";
+            this.cbThursdayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbWednesdayAfternoon
+            // 
+            this.cbWednesdayAfternoon.AutoSize = true;
+            this.cbWednesdayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWednesdayAfternoon.Location = new System.Drawing.Point(17, 114);
+            this.cbWednesdayAfternoon.Name = "cbWednesdayAfternoon";
+            this.cbWednesdayAfternoon.Size = new System.Drawing.Size(101, 23);
+            this.cbWednesdayAfternoon.TabIndex = 8;
+            this.cbWednesdayAfternoon.Text = "Wednesday";
+            this.cbWednesdayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbTuesdayAfternoon
+            // 
+            this.cbTuesdayAfternoon.AutoSize = true;
+            this.cbTuesdayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTuesdayAfternoon.Location = new System.Drawing.Point(17, 78);
+            this.cbTuesdayAfternoon.Name = "cbTuesdayAfternoon";
+            this.cbTuesdayAfternoon.Size = new System.Drawing.Size(81, 23);
+            this.cbTuesdayAfternoon.TabIndex = 7;
+            this.cbTuesdayAfternoon.Text = "Tuesday";
+            this.cbTuesdayAfternoon.UseVisualStyleBackColor = true;
+            // 
+            // cbMondayAfternoon
+            // 
+            this.cbMondayAfternoon.AutoSize = true;
+            this.cbMondayAfternoon.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMondayAfternoon.Location = new System.Drawing.Point(17, 43);
+            this.cbMondayAfternoon.Name = "cbMondayAfternoon";
+            this.cbMondayAfternoon.Size = new System.Drawing.Size(82, 23);
+            this.cbMondayAfternoon.TabIndex = 6;
+            this.cbMondayAfternoon.Text = "Monday";
+            this.cbMondayAfternoon.UseVisualStyleBackColor = true;
             // 
             // EmployeesManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 407);
+            this.ClientSize = new System.Drawing.Size(658, 389);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDone);
@@ -339,11 +461,14 @@ namespace CoffeeNegraWinForms.Forms
             this.Name = "EmployeesManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EmployeesManagerForm";
+            this.Load += new System.EventHandler(this.EmployeesManagerForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAge)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -353,13 +478,13 @@ namespace CoffeeNegraWinForms.Forms
         private Guna.UI2.WinForms.Guna2Button btnDone;
         private Guna.UI2.WinForms.Guna2Button btnClose;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cbFriday;
-        private System.Windows.Forms.CheckBox cbThursday;
-        private System.Windows.Forms.CheckBox cbWednesday;
-        private System.Windows.Forms.CheckBox cbTuesday;
-        private System.Windows.Forms.CheckBox cbMonday;
-        private System.Windows.Forms.CheckBox cbSunday;
-        private System.Windows.Forms.CheckBox cbSaturday;
+        private System.Windows.Forms.CheckBox cbFridayMorning;
+        private System.Windows.Forms.CheckBox cbThursdayMorning;
+        private System.Windows.Forms.CheckBox cbWednesdayMorning;
+        private System.Windows.Forms.CheckBox cbTuesdayMorning;
+        private System.Windows.Forms.CheckBox cbMondayMorning;
+        private System.Windows.Forms.CheckBox cbSundayMorning;
+        private System.Windows.Forms.CheckBox cbSaturdayMorning;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox txtContact;
@@ -371,5 +496,13 @@ namespace CoffeeNegraWinForms.Forms
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2TextBox txtFullname;
         private Guna.UI2.WinForms.Guna2NumericUpDown numAge;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox cbSundayAfternoon;
+        private System.Windows.Forms.CheckBox cbSaturdayAfternoon;
+        private System.Windows.Forms.CheckBox cbFridayAfternoon;
+        private System.Windows.Forms.CheckBox cbThursdayAfternoon;
+        private System.Windows.Forms.CheckBox cbWednesdayAfternoon;
+        private System.Windows.Forms.CheckBox cbTuesdayAfternoon;
+        private System.Windows.Forms.CheckBox cbMondayAfternoon;
     }
 }

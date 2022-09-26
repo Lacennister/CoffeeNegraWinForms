@@ -42,7 +42,7 @@ namespace CoffeeNegraWinForms.Forms
             this.label1.Font = new System.Drawing.Font("Times New Roman", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(329, 62);
+            this.label1.Size = new System.Drawing.Size(328, 61);
             this.label1.TabIndex = 0;
             this.label1.Text = "Coffee Negra";
             // 
@@ -58,10 +58,10 @@ namespace CoffeeNegraWinForms.Forms
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CoffeeNegraWinForms.Properties.Resources.coffee_logo_png_7502_cropped;
-            this.pictureBox1.Location = new System.Drawing.Point(322, 56);
+            this.pictureBox1.Image = global::CoffeeNegraWinForms.Properties.Resources.coffee_negra_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(249, -46);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(253, 230);
+            this.pictureBox1.Size = new System.Drawing.Size(416, 419);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;

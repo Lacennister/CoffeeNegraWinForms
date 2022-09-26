@@ -46,13 +46,13 @@ namespace CoffeeNegraWinForms.Class
                 string[] days = _availability.Split(',');
                 foreach (string day in days)
                 {
-                    if (day.ToUpper() == "MONDAY") { Monday = true; }
-                    if (day.ToUpper() == "TUESDAY") { Tuesday = true; }
-                    if (day.ToUpper() == "WEDNESDAY") { Wednesday = true; }
-                    if (day.ToUpper() == "THURSDAY") { Thursday = true; }
-                    if (day.ToUpper() == "FRIDAY") { Friday = true; }
-                    if (day.ToUpper() == "SATURDAY") { Saturday = true; }
-                    if (day.ToUpper() == "SUNDAY") { Sunday = true; }
+                    if (day.Trim().ToUpper() == "MONDAY") { Monday = true; }
+                    if (day.Trim().ToUpper() == "TUESDAY") { Tuesday = true; }
+                    if (day.Trim().ToUpper() == "WEDNESDAY") { Wednesday = true; }
+                    if (day.Trim().ToUpper() == "THURSDAY") { Thursday = true; }
+                    if (day.Trim().ToUpper() == "FRIDAY") { Friday = true; }
+                    if (day.Trim().ToUpper() == "SATURDAY") { Saturday = true; }
+                    if (day.Trim().ToUpper() == "SUNDAY") { Sunday = true; }
                 }
 
                 if (Monday==false &&
@@ -67,17 +67,30 @@ namespace CoffeeNegraWinForms.Class
             }
             else
             {
-                if (_availability.ToUpper() == "MONDAY") { Monday = true; return true; }
-                if (_availability.ToUpper() == "TUESDAY") { Tuesday = true; return true; }
-                if (_availability.ToUpper() == "WEDNESDAY") { Wednesday = true; return true; }
-                if (_availability.ToUpper() == "THURSDAY") { Thursday = true; return true; }
-                if (_availability.ToUpper() == "FRIDAY") { Friday = true; return true; }
-                if (_availability.ToUpper() == "SATURDAY") { Saturday = true; return true; }
-                if (_availability.ToUpper() == "SUNDAY") { Sunday = true; return true; }
+                if (_availability.Trim().ToUpper() == "MONDAY") { Monday = true; return true; }
+                if (_availability.Trim().ToUpper() == "TUESDAY") { Tuesday = true; return true; }
+                if (_availability.Trim().ToUpper() == "WEDNESDAY") { Wednesday = true; return true; }
+                if (_availability.Trim().ToUpper() == "THURSDAY") { Thursday = true; return true; }
+                if (_availability.Trim().ToUpper() == "FRIDAY") { Friday = true; return true; }
+                if (_availability.Trim().ToUpper() == "SATURDAY") { Saturday = true; return true; }
+                if (_availability.Trim().ToUpper() == "SUNDAY") { Sunday = true; return true; }
             }
 
-            return false;
+            return true;
 
+        }
+
+        public string[] toShowOnDataGridView(string employeeName)
+        {
+            List<string> schedule = new List<string>();
+            if (Monday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Tuesday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Wednesday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Thursday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Friday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Saturday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            if (Sunday) { schedule.Add(employeeName); } else { schedule.Add(""); }
+            return schedule.ToArray();
         }
     }
 }

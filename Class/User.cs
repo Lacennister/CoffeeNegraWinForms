@@ -10,5 +10,8 @@ namespace CoffeeNegraWinForms.Class
     {
         public string username;
         public string password;
+        public string firstname;
+        public string lastname;
+        public DateTime birthday;
     }
 }

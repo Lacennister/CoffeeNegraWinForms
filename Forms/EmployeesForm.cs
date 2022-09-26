@@ -24,7 +24,7 @@ namespace CoffeeNegraWinForms.Forms
         public EmployeesForm()
         {
             InitializeComponent();
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EmployeesForm_MouseDown);
+            this.MouseDown += new MouseEventHandler(this.EmployeesForm_MouseDown);
         }
 
         #region MOVE_FORM
@@ -58,7 +58,45 @@ namespace CoffeeNegraWinForms.Forms
             dgvEmployees.Rows.Clear();
             foreach (Employee _employee in _employees)
             {
-                dgvEmployees.Rows.Add(_employee.id, _employee.name, _employee.birthday, _employee.age, _employee.address, _employee.contact, _employee.timeAvailability.ToString());
+                dgvEmployees.Rows.Add(
+                    _employee.id, 
+                    _employee.name, 
+                    _employee.birthday, 
+                    _employee.age, 
+                    _employee.address, 
+                    _employee.contact, 
+                    _employee.timeAvailability.ToString(),
+                    _employee.morning.ToString(),
+                    _employee.afternoon.ToString()
+                    );
+            }
+        }
+
+        private void txtSearchEmployee_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearchEmployee.Text == "")
+            {
+                UpdateDatagridView();
+            }
+            else
+            {
+                _employees = db.GetEmployees(location_id, txtSearchEmployee.Text);
+
+                dgvEmployees.Rows.Clear();
+                foreach (Employee _employee in _employees)
+                {
+                    dgvEmployees.Rows.Add(
+                        _employee.id,
+                        _employee.name,
+                        _employee.birthday,
+                        _employee.age,
+                        _employee.address,
+                        _employee.contact,
+                        _employee.timeAvailability.ToString(),
+                        _employee.morning.ToString(),
+                        _employee.afternoon.ToString()
+                        );
+                }
             }
         }
 
@@ -66,11 +104,52 @@ namespace CoffeeNegraWinForms.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            dgvEmployees.Rows.Add();
+            using (EmployeesManagerForm _employeesManagerForm = new EmployeesManagerForm() { EmployeeInfo = new Employee() })
+            {
+                if (_employeesManagerForm.ShowDialog() == DialogResult.OK)
+                {
+                    Employee _employee = _employeesManagerForm.EmployeeInfo;
+                    dgvEmployees.Rows.Add(
+                        _employee.id, 
+                        _employee.name, 
+                        _employee.birthday, 
+                        _employee.age, 
+                        _employee.address, 
+                        _employee.contact, 
+                        "N/A", 
+                        _employee.morning.ToString(), 
+                        _employee.afternoon.ToString()
+                    );
+                }
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgvEmployees.SelectedRows)
+            {
+                using (EmployeesManagerForm _employeesManagerForm = new EmployeesManagerForm())
+                {
+                    Employee _employee = GetEmployeeFromDatagridview(row);
+                    _employeesManagerForm.EmployeeInfo = _employee;
+
+                    if (_employeesManagerForm.ShowDialog() == DialogResult.OK)
+                    {
+                        row.Cells[0].Value = _employee.id;
+                        row.Cells[1].Value = _employee.name;
+                        row.Cells[2].Value = _employee.birthday;
+                        row.Cells[3].Value = _employee.age;
+                        row.Cells[4].Value = _employee.address;
+                        row.Cells[5].Value = _employee.contact;
+
+                        row.Cells[7].Value = _employee.morning.ToString();
+                        row.Cells[8].Value = _employee.afternoon.ToString();
+                    }
+                }
+
+                break;
+            }
+
 
         }
 
@@ -80,7 +159,7 @@ namespace CoffeeNegraWinForms.Forms
 
             bool SuccessArchived = false;
             
-            for (int i = dgvEmployees.Rows.Count - 1; dgvEmployees.Rows.Count > i; i--)
+            for (int i = dgvEmployees.Rows.Count - 1; i >= 0; i--)
             {
                 DataGridViewRow row = dgvEmployees.Rows[i];
                 if (row.Selected)
@@ -96,8 +175,6 @@ namespace CoffeeNegraWinForms.Forms
 
                         SuccessArchived = true;
                     }
-
-                    break;
                 }
             }
 
@@ -113,20 +190,27 @@ namespace CoffeeNegraWinForms.Forms
 
             foreach (DataGridViewRow row in dgvEmployees.Rows)
             {
-                Employee _employee = GetEmployeeFromDatagridview(row);
-
-                if (EmployeeWasUpdated(_employee) || IsEmployeeExist(_employee) == false)
+                try
                 {
-                    CustomDialogBox ask = new CustomDialogBox()
-                    {
-                        message_alert = "Do you want to save this employee? \n" + row.Cells[1].Value
-                    };
+                    Employee _employee = GetEmployeeFromDatagridview(row);
 
-                    if (ask.ShowDialog() == DialogResult.Yes)
+                    if (EmployeeWasUpdated(_employee) || IsEmployeeExist(_employee) == false)
                     {
-                        db.InsertEmployee(_employee, location_id);
-                        isSaved = true;
+                        CustomDialogBox ask = new CustomDialogBox()
+                        {
+                            message_alert = "Do you want to save this employee? \n" + row.Cells[1].Value
+                        };
+
+                        if (ask.ShowDialog() == DialogResult.Yes)
+                        {
+                            db.InsertEmployee(_employee, location_id);
+                            isSaved = true;
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
 
@@ -161,6 +245,8 @@ namespace CoffeeNegraWinForms.Forms
                     if (employee.contact != _employee.contact) return true;
                     if (employee.address != _employee.address) return true;
                     if (employee.timeAvailability.ToString() != _employee.timeAvailability.ToString()) return true;
+                    if (employee.morning.ToString() != _employee.morning.ToString()) return true;
+                    if (employee.afternoon.ToString() != _employee.afternoon.ToString()) return true;
                 }
             }
             return false;
@@ -168,47 +254,43 @@ namespace CoffeeNegraWinForms.Forms
 
         private Employee GetEmployeeFromDatagridview(DataGridViewRow row)
         {
-            try
+            Employee _employee = new Employee();
+            _employee.id = Convert.ToInt32(row.Cells[0].Value);
+            _employee.name = (string)row.Cells[1].Value;
+            _employee.birthday = (string)row.Cells[2].Value;
+            _employee.age = Convert.ToInt32(row.Cells[3].Value);
+            _employee.address = (string)row.Cells[4].Value;
+            _employee.contact = (string)row.Cells[5].Value;
+
+            if (_employee.name == "" || _employee.name is null)
             {
-                // SAVE TO DATABASE
-                Employee _employee = new Employee();
-                _employee.id = Convert.ToInt32(row.Cells[0].Value);
-                _employee.name = (string)row.Cells[1].Value;
-                _employee.birthday = (string)row.Cells[2].Value;
-                _employee.age = Convert.ToInt32(row.Cells[3].Value);
-                _employee.address = (string)row.Cells[4].Value;
-                _employee.contact = (string)row.Cells[5].Value;
-
-                if (_employee.name == "")
-                {
-                    MessageBox.Show("Employee name cannot be blank");
-                    throw new Exception("Error");
-                }
-
-                TimeAvailability _timeAvailability = new TimeAvailability();
-                string avail = "";
-
-                if (row.Cells[6].Value != null)
-                {
-                    avail = (string)row.Cells[6].Value;
-
-                    bool isValid = _timeAvailability.ParseFromString(avail);
-                    if (isValid == false)
-                    {
-                        MessageBox.Show("Time availability you provided was unable to parse. Please use correct format like Monday, Tuesday, Wednesday etc.");
-                        throw new Exception("Error");
-                    }
-                }
-                _employee.timeAvailability = _timeAvailability;
-
-                return _employee;
+                throw new Exception("Employee name cannot be blank");
             }
-            catch (Exception)
+
+            TimeAvailability _timeAvailability = new TimeAvailability();
+            string avail = "";
+
+            if (row.Cells[6].Value != null)
             {
+                avail = (string)row.Cells[6].Value;
 
-                throw;
+                bool isValid = _timeAvailability.ParseFromString(avail);
+                if (isValid == false)
+                {
+                    throw new Exception("Time availability you provided was unable to parse. Please use correct format like Monday, Tuesday, Wednesday etc.");
+                }
             }
-            
+            _employee.timeAvailability = _timeAvailability;
+
+            _timeAvailability = new TimeAvailability();
+            _timeAvailability.ParseFromString(Convert.ToString(row.Cells[7].Value));
+            _employee.morning = _timeAvailability;
+
+            _timeAvailability = new TimeAvailability();
+            _timeAvailability.ParseFromString(Convert.ToString(row.Cells[8].Value));
+            _employee.afternoon = _timeAvailability;
+
+            return _employee;
         }
 
         private void btnAddViaForm_Click(object sender, EventArgs e)

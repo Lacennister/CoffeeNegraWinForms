@@ -40,6 +40,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
       <HintPath>packages\Bunifu.Licensing.5.0.0\lib\net40\Bunifu.Licensing.dll</HintPath>
     </Reference>
@@ -49,6 +52,10 @@
     <Reference Include="Guna.UI2, Version=2.0.3.5, Culture=neutral, PublicKeyToken=4015e4865bda28a4, processorArchitecture=MSIL">
       <HintPath>packages\Guna.UI2.WinForms.2.0.3.5\lib\net40\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
@@ -224,17 +231,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Deduction.cs" />
     <Compile Include="Class\Employee.cs" />
     <Compile Include="Class\FormInstance.cs" />
     <Compile Include="Class\PasswordEncryption.cs" />
     <Compile Include="Class\TimeAvailability.cs" />
     <Compile Include="Class\User.cs" />
-    <Compile Include="Database\availability.cs" />
     <Compile Include="Database\databasePath.cs" />
     <Compile Include="Database\databaseSeeder.cs" />
     <Compile Include="Database\employees.cs" />
     <Compile Include="Database\locations.cs" />
     <Compile Include="Database\users.cs" />
+    <Compile Include="Database\workDays.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,11 +255,23 @@
     <Compile Include="Forms\BranchForm.Designer.cs">
       <DependentUpon>BranchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CreateUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateUserForm.Designer.cs">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CustomDialogBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CustomDialogBox.Designer.cs">
       <DependentUpon>CustomDialogBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeductionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeductionForm.Designer.cs">
+      <DependentUpon>DeductionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EmployeesForm.cs">
       <SubType>Form</SubType>
@@ -264,6 +284,12 @@
     </Compile>
     <Compile Include="Forms\EmployeesManagerForm.Designer.cs">
       <DependentUpon>EmployeesManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ForgotPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ForgotPasswordForm.Designer.cs">
+      <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\HomeForm.cs">
       <SubType>Form</SubType>
@@ -297,14 +323,23 @@
     <EmbeddedResource Include="Forms\BranchForm.resx">
       <DependentUpon>BranchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateUserForm.resx">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomDialogBox.resx">
       <DependentUpon>CustomDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeductionForm.resx">
+      <DependentUpon>DeductionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeesManagerForm.resx">
       <DependentUpon>EmployeesManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ForgotPasswordForm.resx">
+      <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
@@ -350,6 +385,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\coffee-logo-png-7502_cropped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coffee negra logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.4.0.2\build\Fody.targets" Condition="Exists('packages\Fody.4.0.2\build\Fody.targets')" />

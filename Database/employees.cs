@@ -17,13 +17,17 @@ namespace CoffeeNegraWinForms.Database
         {
             string sql = "CREATE TABLE `employees` (" +
                     "'id' INTEGER," +
-                    "'location_id' NUMERIC NULL," +
+                    "'work_day_id' NUMERIC," +
+                    "'location_id' NUMERIC," +
                     "'name' TEXT," +
                     "'age' NUMERIC," +
                     "'birthday' TEXT," +
                     "'contact' TEXT," +
                     "'address' TEXT," +
+                    "'work_shift' TEXT," +
                     "'time_availability' TEXT," +
+                    "'morning' TEXT," +
+                    "'afternoon' TEXT," +
                     "'archive' NUMERIC," +
                     "PRIMARY KEY('id' AUTOINCREMENT));";
 
@@ -41,7 +45,7 @@ namespace CoffeeNegraWinForms.Database
             {
                 connection.Open();
 
-                string sql = "SELECT id,name,age,birthday,contact,address,time_availability FROM employees WHERE archive=0 AND location_id=?";
+                string sql = "SELECT id,name,age,birthday,contact,address,time_availability,morning,afternoon FROM employees WHERE archive=0 AND location_id=?";
                 using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
                 {
                     cmd.Parameters.Add(new SQLiteParameter("@location_id", location_id));
@@ -62,6 +66,69 @@ namespace CoffeeNegraWinForms.Database
                             TimeAvailability _timeAvailability = new TimeAvailability();
                             _timeAvailability.ParseFromString((string)reader.GetValue(6));
                             _employee.timeAvailability = _timeAvailability;
+
+                            _timeAvailability = new TimeAvailability();
+                            _timeAvailability.ParseFromString((string)reader.GetValue(7));
+                            _employee.morning = _timeAvailability;
+
+                            _timeAvailability = new TimeAvailability();
+                            _timeAvailability.ParseFromString((string)reader.GetValue(8));
+                            _employee.afternoon = _timeAvailability;
+
+                            _employees.Add(_employee);
+                        }
+
+                        reader.Close();
+                    }
+
+                }
+
+                connection.Close();
+            }
+
+            return _employees;
+        }
+
+        public List<Employee> GetEmployees(int location_id, string searchPattern)
+        {
+            List<Employee> _employees = new List<Employee>();
+
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + d.dbpath))
+            {
+                connection.Open();
+
+                string sql = "SELECT id,name,age,birthday,contact,address,time_availability,morning,afternoon FROM employees WHERE archive=0 AND location_id=? AND (name LIKE ? OR birthday LIKE ? OR address LIKE ?)";
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
+                {
+                    cmd.Parameters.Add(new SQLiteParameter("@location_id", location_id));
+                    cmd.Parameters.Add(new SQLiteParameter("@name", "%" + searchPattern + "%"));
+                    cmd.Parameters.Add(new SQLiteParameter("@birthday", "%" + searchPattern + "%"));
+                    cmd.Parameters.Add(new SQLiteParameter("@address", "%" + searchPattern + "%"));
+                    SQLiteDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Employee _employee = new Employee();
+                            _employee.id = reader.GetInt32(0);
+                            _employee.name = (string)reader.GetValue(1);
+                            _employee.age = reader.GetInt32(2);
+                            _employee.birthday = ConvertFromDBVal<string>(reader.GetValue(3));
+                            _employee.contact = ConvertFromDBVal<string>(reader.GetValue(4));
+                            _employee.address = ConvertFromDBVal<string>(reader.GetValue(5));
+
+                            TimeAvailability _timeAvailability = new TimeAvailability();
+                            _timeAvailability.ParseFromString((string)reader.GetValue(6));
+                            _employee.timeAvailability = _timeAvailability;
+
+                            _timeAvailability = new TimeAvailability();
+                            _timeAvailability.ParseFromString((string)reader.GetValue(7));
+                            _employee.morning = _timeAvailability;
+
+                            _timeAvailability = new TimeAvailability();
+                            _timeAvailability.ParseFromString((string)reader.GetValue(8));
+                            _employee.afternoon = _timeAvailability;
 
                             _employees.Add(_employee);
                         }
@@ -119,7 +186,7 @@ namespace CoffeeNegraWinForms.Database
                 if (isEmployeeAlreadyExist == false)
                 {
                     // ADD NEW EMPLOYEE
-                    sql = "INSERT INTO employees (location_id, name, age, birthday, contact, address, time_availability, archive) VALUES (?,?,?,?,?,?,?,0); SELECT LAST_INSERT_ROWID();";
+                    sql = "INSERT INTO employees (location_id, name, age, birthday, contact, address, time_availability, morning, afternoon, archive) VALUES (?,?,?,?,?,?,?,?,?,0); SELECT LAST_INSERT_ROWID();";
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
                     {
                         cmd.Parameters.Add(new SQLiteParameter("@location_id", location_id));
@@ -129,6 +196,9 @@ namespace CoffeeNegraWinForms.Database
                         cmd.Parameters.Add(new SQLiteParameter("@contact", _employee.contact));
                         cmd.Parameters.Add(new SQLiteParameter("@address", _employee.address));
                         cmd.Parameters.Add(new SQLiteParameter("@time_availability", _employee.timeAvailability.ToString()));
+
+                        cmd.Parameters.Add(new SQLiteParameter("@morning", _employee.morning.ToString()));
+                        cmd.Parameters.Add(new SQLiteParameter("@afternoon", _employee.afternoon.ToString()));
 
                         if (return_id)
                         {
@@ -143,7 +213,7 @@ namespace CoffeeNegraWinForms.Database
                 else
                 {
                     // UPDATE EXISTING EMPLOYEE
-                    sql = "UPDATE employees SET location_id=?, name=?, age=?, birthday=?, contact=?, address=?, time_availability=? WHERE id=?";
+                    sql = "UPDATE employees SET location_id=?, name=?, age=?, birthday=?, contact=?, address=?, time_availability=?, morning=?, afternoon=? WHERE id=?";
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
                     {
                         cmd.Parameters.Add(new SQLiteParameter("@location_id", location_id));
@@ -153,6 +223,10 @@ namespace CoffeeNegraWinForms.Database
                         cmd.Parameters.Add(new SQLiteParameter("@contact", _employee.contact));
                         cmd.Parameters.Add(new SQLiteParameter("@address", _employee.address));
                         cmd.Parameters.Add(new SQLiteParameter("@time_availability", _employee.timeAvailability.ToString()));
+
+                        cmd.Parameters.Add(new SQLiteParameter("@morning", _employee.morning.ToString()));
+                        cmd.Parameters.Add(new SQLiteParameter("@afternoon", _employee.afternoon.ToString()));
+
                         cmd.Parameters.Add(new SQLiteParameter("@id", _employee.id));
                         cmd.ExecuteNonQuery();
                     }

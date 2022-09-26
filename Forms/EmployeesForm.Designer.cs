@@ -29,8 +29,10 @@ namespace CoffeeNegraWinForms.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAddViaForm = new Guna.UI2.WinForms.Guna2Button();
             this.btnDone = new Guna.UI2.WinForms.Guna2Button();
@@ -45,6 +47,10 @@ namespace CoffeeNegraWinForms.Forms
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cellphone_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time_availability = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.morning = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.afternoon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSearchEmployee = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +63,7 @@ namespace CoffeeNegraWinForms.Forms
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 377);
+            this.panel1.Location = new System.Drawing.Point(0, 395);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(700, 55);
             this.panel1.TabIndex = 1;
@@ -74,7 +80,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnAddViaForm.FillColor = System.Drawing.Color.NavajoWhite;
             this.btnAddViaForm.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAddViaForm.ForeColor = System.Drawing.Color.Black;
-            this.btnAddViaForm.Location = new System.Drawing.Point(300, 10);
+            this.btnAddViaForm.Location = new System.Drawing.Point(395, 10);
             this.btnAddViaForm.Name = "btnAddViaForm";
             this.btnAddViaForm.Size = new System.Drawing.Size(147, 35);
             this.btnAddViaForm.TabIndex = 4;
@@ -113,7 +119,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnDelete.FillColor = System.Drawing.Color.NavajoWhite;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(108, 10);
+            this.btnDelete.Location = new System.Drawing.Point(204, 10);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 35);
             this.btnDelete.TabIndex = 2;
@@ -132,12 +138,11 @@ namespace CoffeeNegraWinForms.Forms
             this.btnEdit.FillColor = System.Drawing.Color.NavajoWhite;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(453, 10);
+            this.btnEdit.Location = new System.Drawing.Point(108, 10);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 35);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
-            this.btnEdit.Visible = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
@@ -168,14 +173,14 @@ namespace CoffeeNegraWinForms.Forms
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.Linen;
             this.dgvEmployees.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEmployees.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -184,35 +189,47 @@ namespace CoffeeNegraWinForms.Forms
             this.age,
             this.address,
             this.cellphone_number,
-            this.time_availability});
+            this.time_availability,
+            this.morning,
+            this.afternoon});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvEmployees.EnableHeadersVisualStyles = false;
-            this.dgvEmployees.Location = new System.Drawing.Point(3, 23);
-            this.dgvEmployees.MultiSelect = false;
+            this.dgvEmployees.Location = new System.Drawing.Point(3, 64);
             this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false;
             this.dgvEmployees.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvEmployees.RowTemplate.Height = 24;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(695, 347);
+            this.dgvEmployees.Size = new System.Drawing.Size(695, 325);
             this.dgvEmployees.TabIndex = 4;
             // 
             // id
             // 
+            this.id.FillWeight = 30F;
             this.id.HeaderText = "id";
             this.id.MinimumWidth = 6;
             this.id.Name = "id";
-            this.id.Visible = false;
+            this.id.ReadOnly = true;
             // 
             // name
             // 
             this.name.HeaderText = "Name";
             this.name.MinimumWidth = 6;
             this.name.Name = "name";
+            this.name.ReadOnly = true;
             this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // birthday
@@ -221,6 +238,7 @@ namespace CoffeeNegraWinForms.Forms
             this.birthday.HeaderText = "Birthday";
             this.birthday.MinimumWidth = 6;
             this.birthday.Name = "birthday";
+            this.birthday.ReadOnly = true;
             this.birthday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // age
@@ -229,6 +247,7 @@ namespace CoffeeNegraWinForms.Forms
             this.age.HeaderText = "Age";
             this.age.MinimumWidth = 6;
             this.age.Name = "age";
+            this.age.ReadOnly = true;
             this.age.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // address
@@ -236,6 +255,7 @@ namespace CoffeeNegraWinForms.Forms
             this.address.HeaderText = "Address";
             this.address.MinimumWidth = 6;
             this.address.Name = "address";
+            this.address.ReadOnly = true;
             this.address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // cellphone_number
@@ -243,22 +263,64 @@ namespace CoffeeNegraWinForms.Forms
             this.cellphone_number.HeaderText = "Cellphone Number";
             this.cellphone_number.MinimumWidth = 6;
             this.cellphone_number.Name = "cellphone_number";
+            this.cellphone_number.ReadOnly = true;
             this.cellphone_number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // time_availability
             // 
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.time_availability.DefaultCellStyle = dataGridViewCellStyle6;
             this.time_availability.FillWeight = 140F;
             this.time_availability.HeaderText = "Time Availability";
             this.time_availability.MinimumWidth = 6;
             this.time_availability.Name = "time_availability";
+            this.time_availability.ReadOnly = true;
             this.time_availability.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.time_availability.Visible = false;
+            // 
+            // morning
+            // 
+            this.morning.HeaderText = "Morning";
+            this.morning.MinimumWidth = 6;
+            this.morning.Name = "morning";
+            this.morning.ReadOnly = true;
+            this.morning.Visible = false;
+            // 
+            // afternoon
+            // 
+            this.afternoon.HeaderText = "Afternoon";
+            this.afternoon.MinimumWidth = 6;
+            this.afternoon.Name = "afternoon";
+            this.afternoon.ReadOnly = true;
+            this.afternoon.Visible = false;
+            // 
+            // txtSearchEmployee
+            // 
+            this.txtSearchEmployee.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchEmployee.Location = new System.Drawing.Point(152, 24);
+            this.txtSearchEmployee.Name = "txtSearchEmployee";
+            this.txtSearchEmployee.Size = new System.Drawing.Size(536, 30);
+            this.txtSearchEmployee.TabIndex = 5;
+            this.txtSearchEmployee.TextChanged += new System.EventHandler(this.txtSearchEmployee_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search Employee : ";
             // 
             // EmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(700, 432);
+            this.ClientSize = new System.Drawing.Size(700, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSearchEmployee);
             this.Controls.Add(this.dgvEmployees);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -269,6 +331,7 @@ namespace CoffeeNegraWinForms.Forms
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -280,6 +343,9 @@ namespace CoffeeNegraWinForms.Forms
         private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2Button btnEdit;
         private Guna.UI2.WinForms.Guna2Button btnAdd;
+        private Guna.UI2.WinForms.Guna2Button btnAddViaForm;
+        private System.Windows.Forms.TextBox txtSearchEmployee;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
@@ -287,6 +353,7 @@ namespace CoffeeNegraWinForms.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn cellphone_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn time_availability;
-        private Guna.UI2.WinForms.Guna2Button btnAddViaForm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn morning;
+        private System.Windows.Forms.DataGridViewTextBoxColumn afternoon;
     }
 }

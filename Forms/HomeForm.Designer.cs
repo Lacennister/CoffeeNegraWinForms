@@ -30,6 +30,9 @@ namespace CoffeeNegraWinForms.Forms
         private void InitializeComponent()
         {
             this.SidebarPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnCreateAccount = new Guna.UI2.WinForms.Guna2Button();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnPulilan = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
@@ -46,6 +49,9 @@ namespace CoffeeNegraWinForms.Forms
             // SidebarPanel
             // 
             this.SidebarPanel.BorderThickness = 1;
+            this.SidebarPanel.Controls.Add(this.lblWelcome);
+            this.SidebarPanel.Controls.Add(this.btnCreateAccount);
+            this.SidebarPanel.Controls.Add(this.btnClose);
             this.SidebarPanel.Controls.Add(this.btnPulilan);
             this.SidebarPanel.Controls.Add(this.label1);
             this.SidebarPanel.Controls.Add(this.btnLogout);
@@ -59,8 +65,60 @@ namespace CoffeeNegraWinForms.Forms
             this.SidebarPanel.FillColor = System.Drawing.Color.Linen;
             this.SidebarPanel.Location = new System.Drawing.Point(0, 0);
             this.SidebarPanel.Name = "SidebarPanel";
-            this.SidebarPanel.Size = new System.Drawing.Size(254, 550);
+            this.SidebarPanel.Size = new System.Drawing.Size(254, 570);
             this.SidebarPanel.TabIndex = 2;
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.ForeColor = System.Drawing.Color.DimGray;
+            this.lblWelcome.Location = new System.Drawing.Point(-1, 80);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(248, 37);
+            this.lblWelcome.TabIndex = 12;
+            this.lblWelcome.Text = "Welcome, Admin";
+            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnCreateAccount
+            // 
+            this.btnCreateAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreateAccount.BorderRadius = 5;
+            this.btnCreateAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCreateAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCreateAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCreateAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCreateAccount.FillColor = System.Drawing.Color.Transparent;
+            this.btnCreateAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateAccount.HoverState.FillColor = System.Drawing.Color.NavajoWhite;
+            this.btnCreateAccount.Location = new System.Drawing.Point(3, 422);
+            this.btnCreateAccount.Name = "btnCreateAccount";
+            this.btnCreateAccount.Size = new System.Drawing.Size(248, 45);
+            this.btnCreateAccount.TabIndex = 11;
+            this.btnCreateAccount.Text = "Create Account";
+            this.btnCreateAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BorderRadius = 5;
+            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnClose.FillColor = System.Drawing.Color.Transparent;
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.DimGray;
+            this.btnClose.HoverState.FillColor = System.Drawing.Color.NavajoWhite;
+            this.btnClose.Location = new System.Drawing.Point(3, 522);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(248, 45);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.Text = "Exit Application";
+            this.btnClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnPulilan
             // 
@@ -88,7 +146,7 @@ namespace CoffeeNegraWinForms.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(68, 32);
+            this.label1.Location = new System.Drawing.Point(65, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 32);
             this.label1.TabIndex = 9;
@@ -106,7 +164,7 @@ namespace CoffeeNegraWinForms.Forms
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.Black;
             this.btnLogout.HoverState.FillColor = System.Drawing.Color.NavajoWhite;
-            this.btnLogout.Location = new System.Drawing.Point(2, 500);
+            this.btnLogout.Location = new System.Drawing.Point(3, 472);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(248, 45);
             this.btnLogout.TabIndex = 6;
@@ -159,10 +217,10 @@ namespace CoffeeNegraWinForms.Forms
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CoffeeNegraWinForms.Properties.Resources.coffee_logo_png_7502_cropped;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 22);
+            this.pictureBox1.Image = global::CoffeeNegraWinForms.Properties.Resources.coffee_negra_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(-29, -23);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 140);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
@@ -238,7 +296,7 @@ namespace CoffeeNegraWinForms.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(1000, 550);
+            this.ClientSize = new System.Drawing.Size(1000, 570);
             this.Controls.Add(this.SidebarPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
@@ -265,5 +323,8 @@ namespace CoffeeNegraWinForms.Forms
         private Guna.UI2.WinForms.Guna2Button btnSchedule;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
+        private Guna.UI2.WinForms.Guna2Button btnCreateAccount;
+        private System.Windows.Forms.Label lblWelcome;
     }
 }

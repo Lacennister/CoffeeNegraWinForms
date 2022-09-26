@@ -83,6 +83,16 @@ namespace CoffeeNegraWinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap coffee_negra_logo {
+            get {
+                object obj = ResourceManager.GetObject("coffee negra logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sample_logo {
             get {
                 object obj = ResourceManager.GetObject("sample_logo", resourceCulture);

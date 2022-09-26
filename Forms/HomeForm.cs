@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using CoffeeNegraWinForms.Class;
+using System.Globalization;
 
 namespace CoffeeNegraWinForms.Forms
 {
     public partial class HomeForm : Form
     {
+        public User _currentUser { get; set; }
+
         public HomeForm()
         {
             InitializeComponent();
@@ -40,9 +44,6 @@ namespace CoffeeNegraWinForms.Forms
 
         #region FORM_DECLARATIONS
 
-        ScheduleForm _scheduleForm = new ScheduleForm();
-        PayrollForm _payrollForm = new PayrollForm();
-
         public LoginForm _loginForm;
         public Guna2Button _activeButton;
         public Guna2Button _activeBranch;
@@ -52,6 +53,19 @@ namespace CoffeeNegraWinForms.Forms
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
+            string welcomeUserName = "";
+
+            if (_currentUser.firstname == "" && _currentUser.lastname == "")
+            {
+                welcomeUserName = _currentUser.username;
+            }
+            else
+            {
+                welcomeUserName = _currentUser.firstname;
+            }
+
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            lblWelcome.Text = "Welcome " + textInfo.ToTitleCase(welcomeUserName) + "!";
             _loginForm = new LoginForm();
         }
 
@@ -172,9 +186,20 @@ namespace CoffeeNegraWinForms.Forms
 
         private void btnSchedule_Click(object sender, EventArgs e)
         {
+            ScheduleForm _scheduleForm = new ScheduleForm();
+
             if (_currentForm == _scheduleForm) return;
             setCurrentForm();
             SetActiveButton((Guna2Button)sender);
+
+            if (_activeBranch == btnStaMaria)
+            {
+                _scheduleForm.location_id = 1;
+            }
+            else if (_activeBranch == btnPulilan)
+            {
+                _scheduleForm.location_id = 2;
+            }
 
             _currentForm = _scheduleForm;
             _scheduleForm.MdiParent = this;
@@ -183,9 +208,20 @@ namespace CoffeeNegraWinForms.Forms
 
         private void btnPayroll_Click(object sender, EventArgs e)
         {
+            PayrollForm _payrollForm = new PayrollForm();
+
             if (_currentForm == _payrollForm) return;
             setCurrentForm();
             SetActiveButton((Guna2Button)sender);
+
+            if (_activeBranch == btnStaMaria)
+            {
+                _payrollForm.location_id = 1;
+            }
+            else if (_activeBranch == btnPulilan)
+            {
+                _payrollForm.location_id = 2;
+            }
 
             _currentForm = _payrollForm;
             _payrollForm.MdiParent = this;
@@ -208,6 +244,17 @@ namespace CoffeeNegraWinForms.Forms
                 this.Close();
                 _loginForm.Show();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            CreateUserForm _form = new CreateUserForm();
+            _form.ShowDialog();
         }
     }
 }

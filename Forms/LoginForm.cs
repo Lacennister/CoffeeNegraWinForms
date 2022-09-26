@@ -79,8 +79,20 @@ namespace CoffeeNegraWinForms.Forms
                 return;
             }
 
+            _home._currentUser = user;
             _home.Show();
             this.Hide();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnForgotPassword_Click(object sender, EventArgs e)
+        {
+            ForgotPasswordForm _form = new ForgotPasswordForm();
+            _form.ShowDialog();
         }
     }
 }
